@@ -24,6 +24,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install frontend dependencies
+        run: |
+          npm install
+
       - name: Install wait-on
         run: |
           npm install -g wait-on
@@ -49,3 +58,4 @@ jobs:
           wait-on: 'http://localhost:8080/home'
           wait-on-timeout: 60
           browser: chrome
+          config-file: cypress.config.js
